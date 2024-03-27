@@ -23,6 +23,6 @@ class DestinationController extends Controller
         return response()->json(['message' => 'Destination ajoutée avec succès à l\'itinéraire'], 200);
     }
 
-    // Autres méthodes du contrôleur
+
 }
 

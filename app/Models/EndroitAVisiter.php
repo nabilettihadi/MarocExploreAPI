@@ -9,6 +9,7 @@ class EndroitAVisiter extends Model
 {
     use HasFactory;
 
+    protected $table ='endroit_a_visiter';
     protected $fillable = [
         'nom_endroit', 'destination_id',
     ];
