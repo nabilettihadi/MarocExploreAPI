@@ -114,36 +114,116 @@ class ItineraireController extends Controller
         }
     }
 
+    public function update(Request $request, $itineraireId)
+    {
+        try {
+            $itineraire = Itineraire::findOrFail($itineraireId);
+
+
+            if ($itineraire->user_id !== auth()->id()) {
+                return response()->json([
+                    'status' => 'error',
+                    'message' => 'Vous n\'êtes pas autorisé à modifier cet itinéraire.',
+                ], 403); // Code 403: Accès refusé
+            }
+
+            $request->validate([
+                'titre' => 'required|string|max:255',
+                'categorie' => 'required|string|max:255',
+                'image' => 'required|string',
+                'duree' => 'required|string',
+            ]);
+
+            $itineraire->titre = $request->titre;
+            $itineraire->categorie = $request->categorie;
+            $itineraire->image = $request->image;
+            $itineraire->duree = $request->duree;
+
+            $itineraire->save();
+
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Itinéraire mis à jour avec succès',
+                'itineraire' => $itineraire,
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Une erreur est survenue lors de la mise à jour de l\'itinéraire',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
+    }
+
     public function addToVisitList(Request $request, $itineraireId)
     {
         $user = Auth::user();
 
-        // Logique pour ajouter un itinéraire à la liste à visiter de l'utilisateur
+
 
         return response()->json(['message' => 'Itinéraire ajouté à la liste à visiter'], 200);
     }
 
-    public function index(Request $request)
+    public function index()
     {
         $itineraires = Itineraire::all();
-
-        return response()->json($itineraires, 200);
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Liste des itinéraires récupérée avec succès',
+            'itineraires' => $itineraires,
+        ],200);
     }
 
     public function search(Request $request)
     {
-        $query = Itineraire::query();
-
-        if ($request->has('categorie')) {
-            $query->where('categorie', $request->categorie);
+        try {
+            // Récupérez le titre de recherche depuis la requête
+            $titre = $request->input('titre');
+    
+            // Recherchez les itinéraires par titre
+            $itineraires = Itineraire::where('titre', 'like', "%$titre%")->get();
+    
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Résultats de la recherche par titre',
+                'itineraires' => $itineraires,
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Erreur lors de la recherche par titre',
+                'error' => $e->getMessage(),
+            ], 500);
         }
-
-        if ($request->has('duree')) {
-            $query->where('duree', $request->duree);
-        }
-
-        $itineraires = $query->get();
-
-        return response()->json($itineraires, 200);
     }
+    
+
+    public function filtrerItineraires(Request $request)
+{
+    // Récupérer les paramètres de filtrage depuis la requête
+    $categorie = $request->input('categorie');
+    $duree = $request->input('duree');
+
+    // Filtrer les itinéraires en fonction des critères
+    $itineraires = Itineraire::query();
+
+    if ($categorie) {
+        $itineraires->where('categorie', $categorie);
+    }
+
+    if ($duree) {
+        $itineraires->where('duree', $duree);
+    }
+
+    // Récupérer les résultats de la requête
+    $resultats = $itineraires->get();
+
+    // Retourner les résultats au format JSON
+    return response()->json([
+        'status' => 'success',
+        'message' => 'Itinéraires filtrés avec succès',
+        'resultats' => $resultats,
+    ]);
+}
+
 }

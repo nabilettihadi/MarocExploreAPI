@@ -29,9 +29,13 @@ Route::post('/logout', [UserController::class, 'logout'])->middleware('auth:api'
 // Routes pour les itinéraires
 Route::post('/itineraires', [ItineraireController::class, 'create'])->middleware('auth:api');
 Route::get('/itineraires/{itineraireId}/addDestination', [ItineraireController::class, 'addDestinations'])->middleware('auth:api');
+Route::put('/itineraires/{itineraireId}', [ItineraireController::class, 'update'])->middleware('auth:api');
 Route::post('/itineraires/{itineraireId}/addToVisitList', [ItineraireController::class, 'addToVisitList'])->middleware('auth:api');
-Route::get('/itineraires', [ItineraireController::class, 'index']);
+Route::get('/itineraires/index', [ItineraireController::class, 'index']);
 Route::get('/itineraires/search', [ItineraireController::class, 'search']);
+Route::get('/itineraires/filtrer', [ItineraireController::class, 'filtrerItineraires']);
+
+
 
 // Routes pour les destinations
 Route::post('/destinations/{itineraireId}', [DestinationController::class, 'addDestination'])->middleware('auth:api');
