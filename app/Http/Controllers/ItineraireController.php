@@ -157,15 +157,6 @@ class ItineraireController extends Controller
         }
     }
 
-    public function addToVisitList(Request $request, $itineraireId)
-    {
-        $user = Auth::user();
-
-
-
-        return response()->json(['message' => 'Itinéraire ajouté à la liste à visiter'], 200);
-    }
-
     public function index()
     {
         $itineraires = Itineraire::all();
@@ -230,7 +221,7 @@ class ItineraireController extends Controller
 
 
 
-public function ajouterAVisiter(Request $request, $itineraireId)
+public function addToVisitList(Request $request, $itineraireId)
 {
     try {
         $user = Auth::user();
