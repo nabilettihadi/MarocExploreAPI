@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Itineraire;
+use App\Models\ItineraireAVisiter;
 use App\Models\Destination;
 use App\Models\EndroitAVisiter;
 use Illuminate\Support\Facades\Auth;
+
 
 class ItineraireController extends Controller
 {
@@ -225,5 +227,50 @@ class ItineraireController extends Controller
         'resultats' => $resultats,
     ]);
 }
+
+
+
+public function ajouterAVisiter(Request $request, $itineraireId)
+{
+    try {
+        $user = Auth::user();
+
+        // Vérifier si l'itinéraire existe
+        $itineraire = Itineraire::find($itineraireId);
+        if (!$itineraire) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Itinéraire non trouvé.',
+            ], 404);
+        }
+
+        // Vérifier si l'itinéraire est déjà dans la liste à visiter de l'utilisateur
+        $alreadyAdded = ItineraireAVisiter::where('user_id', $user->id)
+            ->where('itineraire_id', $itineraireId)
+            ->exists();
+
+        if ($alreadyAdded) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Itinéraire déjà ajouté à la liste à visiter.',
+            ], 400);
+        }
+
+        // Ajouter l'itinéraire à visiter
+        ItineraireAVisiter::ajouterAVisiter($user->id, $itineraireId);
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Itinéraire ajouté à la liste à visiter avec succès.',
+        ], 200);
+    } catch (\Exception $e) {
+        return response()->json([
+            'status' => 'error',
+            'message' => 'An error occurred',
+            'error' => $e->getMessage(),
+        ], 500);
+    }
+}
+
 
 }
