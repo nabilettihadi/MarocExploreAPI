@@ -37,7 +37,7 @@ L'objectif principal de ce projet est de développer une API robuste pour la ges
 
 ## Documentation de l'API
 
-La documentation détaillée de l'API est disponible dans le fichier API_Documentation.md. Elle a été générée à l'aide de Postman et fournit des exemples d'utilisation de chaque endpoint de l'API.
+La documentation détaillée de l'API est disponible dans le fichier MarocExploreAPI.postman_collection. Elle a été générée à l'aide de Postman et fournit des exemples d'utilisation de chaque endpoint de l'API.
 
 ## Tests
 
