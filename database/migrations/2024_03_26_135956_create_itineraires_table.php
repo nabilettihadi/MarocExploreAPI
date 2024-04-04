@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('itineraires', function (Blueprint $table) {
             $table->id();
             $table->string('titre');
-            $table->string('categorie');
+            $table->foreignId('categorie_id')->constrained('categories')->onDelete('cascade');
             $table->string('duree');
             $table->string('image')->nullable();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
@@ -22,8 +22,12 @@ return new class extends Migration
         });
     }
 
+    /**
+     * Reverse the migrations.
+     */
     public function down()
     {
         Schema::dropIfExists('itineraires');
     }
 };
+

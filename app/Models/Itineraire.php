@@ -10,7 +10,7 @@ class Itineraire extends Model
     use HasFactory;
 
     protected $fillable = [
-        'titre', 'categorie', 'duree', 'image', 'user_id',
+        'titre', 'duree', 'image', 'user_id',
     ];
 
     public function user()
@@ -18,8 +18,14 @@ class Itineraire extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function categorie()
+    {
+        return $this->belongsTo(Categorie::class);
+    }
+
     public function destinations()
     {
         return $this->hasMany(Destination::class);
     }
 }
+
