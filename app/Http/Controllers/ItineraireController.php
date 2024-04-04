@@ -83,7 +83,15 @@ class ItineraireController extends Controller
     public function addDestinations(Request $request, $itineraireId)
     {
         try {
-            $itineraire = Itineraire::findOrFail($itineraireId);
+            $itineraire = Itineraire::with('user')->findOrFail($itineraireId);
+
+            // Vérifie si l'utilisateur actuel est le propriétaire de l'itinéraire
+            if ($itineraire->user->id !== auth()->id()) {
+                return response()->json([
+                    'status' => 'error',
+                    'message' => 'Vous n\'êtes pas autorisé à ajouter des destinations à cet itinéraire.',
+                ], 403);
+            }
 
             $request->validate([
                 'destinations' => 'required|array|min:1',
@@ -115,6 +123,7 @@ class ItineraireController extends Controller
             ], 500);
         }
     }
+
 
     public function update(Request $request, $itineraireId)
     {
@@ -164,7 +173,7 @@ class ItineraireController extends Controller
             'status' => 'success',
             'message' => 'Liste des itinéraires récupérée avec succès',
             'itineraires' => $itineraires,
-        ],200);
+        ], 200);
     }
 
     public function search(Request $request)
@@ -172,10 +181,10 @@ class ItineraireController extends Controller
         try {
             // Récupérez le titre de recherche depuis la requête
             $titre = $request->input('titre');
-    
+
             // Recherchez les itinéraires par titre
             $itineraires = Itineraire::where('titre', 'like', "%$titre%")->get();
-    
+
             return response()->json([
                 'status' => 'success',
                 'message' => 'Résultats de la recherche par titre',
@@ -189,79 +198,77 @@ class ItineraireController extends Controller
             ], 500);
         }
     }
-    
+
 
     public function filtrerItineraires(Request $request)
-{
-    // Récupérer les paramètres de filtrage depuis la requête
-    $categorie = $request->input('categorie');
-    $duree = $request->input('duree');
+    {
+        // Récupérer les paramètres de filtrage depuis la requête
+        $categorie = $request->input('categorie');
+        $duree = $request->input('duree');
 
-    // Filtrer les itinéraires en fonction des critères
-    $itineraires = Itineraire::query();
+        // Filtrer les itinéraires en fonction des critères
+        $itineraires = Itineraire::query();
 
-    if ($categorie) {
-        $itineraires->where('categorie', $categorie);
-    }
-
-    if ($duree) {
-        $itineraires->where('duree', $duree);
-    }
-
-    // Récupérer les résultats de la requête
-    $resultats = $itineraires->get();
-
-    // Retourner les résultats au format JSON
-    return response()->json([
-        'status' => 'success',
-        'message' => 'Itinéraires filtrés avec succès',
-        'resultats' => $resultats,
-    ]);
-}
-
-
-
-public function addToVisitList(Request $request, $itineraireId)
-{
-    try {
-        $user = Auth::user();
-
-        // Vérifier si l'itinéraire existe
-        $itineraire = Itineraire::find($itineraireId);
-        if (!$itineraire) {
-            return response()->json([
-                'status' => 'error',
-                'message' => 'Itinéraire non trouvé.',
-            ], 404);
+        if ($categorie) {
+            $itineraires->where('categorie', $categorie);
         }
 
-        // Vérifier si l'itinéraire est déjà dans la liste à visiter de l'utilisateur
-        $alreadyAdded = ItineraireAVisiter::where('user_id', $user->id)
-            ->where('itineraire_id', $itineraireId)
-            ->exists();
-
-        if ($alreadyAdded) {
-            return response()->json([
-                'status' => 'error',
-                'message' => 'Itinéraire déjà ajouté à la liste à visiter.',
-            ], 400);
+        if ($duree) {
+            $itineraires->where('duree', $duree);
         }
 
-        // Ajouter l'itinéraire à visiter
-        ItineraireAVisiter::ajouterAVisiter($user->id, $itineraireId);
+        // Récupérer les résultats de la requête
+        $resultats = $itineraires->get();
 
+        // Retourner les résultats au format JSON
         return response()->json([
             'status' => 'success',
-            'message' => 'Itinéraire ajouté à la liste à visiter avec succès.',
-        ], 200);
-    } catch (\Exception $e) {
-        return response()->json([
-            'status' => 'error',
-            'message' => 'An error occurred',
-            'error' => $e->getMessage(),
-        ], 500);
+            'message' => 'Itinéraires filtrés avec succès',
+            'resultats' => $resultats,
+        ]);
     }
-}
 
 
+
+    public function addToVisitList(Request $request, $itineraireId)
+    {
+        try {
+            $user = Auth::user();
+
+            // Vérifier si l'itinéraire existe
+            $itineraire = Itineraire::find($itineraireId);
+            if (!$itineraire) {
+                return response()->json([
+                    'status' => 'error',
+                    'message' => 'Itinéraire non trouvé.',
+                ], 404);
+            }
+
+            // Vérifier si l'itinéraire est déjà dans la liste à visiter de l'utilisateur
+            $alreadyAdded = ItineraireAVisiter::where('user_id', $user->id)
+                ->where('itineraire_id', $itineraireId)
+                ->exists();
+
+            if ($alreadyAdded) {
+                return response()->json([
+                    'status' => 'error',
+                    'message' => 'Itinéraire déjà ajouté à la liste à visiter.',
+                ], 400);
+            }
+
+            // Ajouter l'itinéraire à visiter
+            ItineraireAVisiter::ajouterAVisiter($user->id, $itineraireId);
+
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Itinéraire ajouté à la liste à visiter avec succès.',
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'An error occurred',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
+    }
 }
