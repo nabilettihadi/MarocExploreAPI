@@ -6,7 +6,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\User;
-
+use Tymon\JWTAuth\Facades\JWTAuth;
 class UserControllerTest extends TestCase
 {
     use RefreshDatabase, WithFaker;
@@ -57,17 +57,23 @@ class UserControllerTest extends TestCase
      *
      * @return void
      */
-    public function test_logout_authenticated_user()
+    public function testLogoutAuthenticatedUser()
     {
-        $user = User::factory()->create();
+        // Créer un utilisateur
+        $user = User::factory()->create([
+            'email' => 'test@example.com',
+            'password' => bcrypt('password'),
+        ]);
 
-        $token = $user->createToken('TestToken')->plainTextToken;
+        // Générer le jeton JWT pour l'utilisateur
+        $token = JWTAuth::fromUser($user);
 
+        // Appeler la route de déconnexion avec le jeton d'authentification
         $response = $this->withHeaders([
             'Authorization' => 'Bearer ' . $token,
         ])->postJson('/api/logout');
 
-        $response->assertStatus(200)
-            ->assertJson(['message' => 'Successfully logged out']);
+        // Vérifier que la déconnexion a réussi avec le code de statut 200
+        $response->assertStatus(200)->assertJson(['message' => 'Successfully logged out']);
     }
 }

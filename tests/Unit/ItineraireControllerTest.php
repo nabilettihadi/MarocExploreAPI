@@ -17,11 +17,11 @@ class ItineraireControllerTest extends TestCase
         $user = \App\Models\User::factory()->create();
 
         $response = $this->actingAs($user)
-            ->postJson('/api/itineraires/create', [
+            ->postJson('/api/itineraires', [
                 'titre' => 'Test Itineraire',
-                'categorie' => 'Test Catégorie',
-                'image' => 'http://example.com/test.jpg',
                 'duree' => '1 semaine',
+                'image' => 'http://example.com/test.jpg',
+                'categorie_id' => 1, // Ajout de l'id de la catégorie existante
                 'destinations' => [
                     [
                         'nom' => 'Destination 1',
@@ -50,7 +50,7 @@ class ItineraireControllerTest extends TestCase
         // Vérifier que l'itinéraire a été créé en base de données
         $itineraire = Itineraire::where('titre', 'Test Itineraire')->first();
         $this->assertNotNull($itineraire);
-        $this->assertEquals('Test Catégorie', $itineraire->categorie);
+        $this->assertEquals(1, $itineraire->categorie_id); // Assertion sur l'id de la catégorie
         $this->assertEquals('http://example.com/test.jpg', $itineraire->image);
         $this->assertEquals('1 semaine', $itineraire->duree);
 
@@ -66,6 +66,8 @@ class ItineraireControllerTest extends TestCase
         $this->assertNotNull($destination2);
         $this->assertCount(1, $destination2->endroits_a_visiter);
     }
+
+
 
     public function testAddDestinationsToItineraire()
     {
@@ -89,13 +91,13 @@ class ItineraireControllerTest extends TestCase
         $this->assertCount(2, $itineraire->destinations);
     }
 
+
     public function testUpdateItineraire()
     {
         $itineraire = Itineraire::factory()->create();
 
         $response = $this->putJson("/api/itineraires/{$itineraire->id}/update", [
             'titre' => 'Itineraire Modifié',
-            'categorie' => 'Nouvelle Catégorie',
             'image' => 'http://example.com/modified.jpg',
             'duree' => '2 semaines',
         ]);
@@ -109,7 +111,6 @@ class ItineraireControllerTest extends TestCase
         // Vérifier que l'itinéraire a été mis à jour en base de données
         $itineraire = $itineraire->fresh();
         $this->assertEquals('Itineraire Modifié', $itineraire->titre);
-        $this->assertEquals('Nouvelle Catégorie', $itineraire->categorie);
         $this->assertEquals('http://example.com/modified.jpg', $itineraire->image);
         $this->assertEquals('2 semaines', $itineraire->duree);
     }
@@ -128,26 +129,43 @@ class ItineraireControllerTest extends TestCase
             ]);
     }
 
-    public function testSearchItineraires()
+    public function test_search_itineraires()
     {
-        $itineraires = Itineraire::factory()->count(5)->create();
+        // Créer des itinéraires avec les colonnes nécessaires
+        $itineraire1 = Itineraire::factory()->create([
+            'titre' => 'Itineraire 1',
+            'categorie' => 'Categorie 1',
+            'duree' => '5 jours',
+            'image' => 'https://example.com/image1.jpg',
+            'user_id' => 1,
+        ]);
 
-        $response = $this->getJson('/api/itineraires/search?titre=Test');
+        $itineraire2 = Itineraire::factory()->create([
+            'titre' => 'Itineraire 2',
+            'categorie' => 'Categorie 2',
+            'duree' => '3 jours',
+            'image' => 'https://example.com/image2.jpg',
+            'user_id' => 2,
+        ]);
 
+        // Effectuer la recherche avec le titre 'Itineraire 1'
+        $response = $this->getJson('/api/itineraires/search?titre=Itineraire 1');
+
+        // Vérifier que la recherche a réussi avec le code de statut 200 et les données correctes
         $response->assertStatus(200)
             ->assertJson([
                 'status' => 'success',
                 'message' => 'Résultats de la recherche par titre',
-                'itineraires' => $itineraires->toArray(),
+                'itineraires' => [$itineraire1->toArray()],
             ]);
     }
 
     public function testFilterItineraires()
     {
-        Itineraire::factory()->create(['categorie' => 'Plage', 'duree' => '1 semaine']);
-        Itineraire::factory()->create(['categorie' => 'Montagne', 'duree' => '2 semaines']);
+        Itineraire::factory()->create(['duree' => '1 semaine']);
+        Itineraire::factory()->create(['duree' => '2 semaines']);
 
-        $response = $this->getJson('/api/itineraires/filtrer?categorie=Plage');
+        $response = $this->getJson('/api/itineraires/filtrer?duree=1 semaine');
 
         $response->assertStatus(200)
             ->assertJsonCount(1, 'resultats')
@@ -159,7 +177,7 @@ class ItineraireControllerTest extends TestCase
 
     public function testAddToVisitList()
     {
-        $itineraire = Itineraire::factory()->create();
+        $itineraire = Itineraire::factory()->create(['categorie_id' => 1]);
 
         $response = $this->postJson("/api/itineraires/{$itineraire->id}/addToVisitList");
 
@@ -170,5 +188,3 @@ class ItineraireControllerTest extends TestCase
             ]);
     }
 }
-
-

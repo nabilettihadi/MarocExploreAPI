@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Tymon\JWTAuth\Facades\JWTAuth;
+use Tymon\JWTAuth\Exceptions\JWTException;
 
 class UserController extends Controller
 {
@@ -45,9 +46,12 @@ class UserController extends Controller
     // Méthode pour déconnecter un utilisateur
     public function logout(Request $request)
     {
-        JWTAuth::invalidate(JWTAuth::getToken());
+        try {
+            JWTAuth::parseToken()->invalidate(); // Invalider le jeton JWT
+        } catch (JWTException $e) {
+            return response()->json(['error' => 'Failed to logout'], 500);
+        }
+
         return response()->json(['message' => 'Successfully logged out']);
     }
-
-    
 }
