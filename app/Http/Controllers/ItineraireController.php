@@ -157,7 +157,7 @@ class ItineraireController extends Controller
             $categorie = Categorie::firstOrCreate(['nom' => $request->categorie]);
 
             $itineraire->titre = $request->titre;
-            $itineraire->categorie_id = $categorie->id; // Utilisation de l'ID de la catégorie
+            $itineraire->categorie_id = $categorie->id;
             $itineraire->image = $request->image;
             $itineraire->duree = $request->duree;
 
@@ -180,13 +180,19 @@ class ItineraireController extends Controller
 
     public function index()
     {
-        $itineraires = Itineraire::all();
+        
+        $itinerairesQuery = Itineraire::with('destinations');
+
+        $itineraires = $itinerairesQuery->get();
+
         return response()->json([
             'status' => 'success',
             'message' => 'Liste des itinéraires récupérée avec succès',
             'itineraires' => $itineraires,
         ], 200);
     }
+
+
 
     public function search(Request $request)
     {
@@ -232,7 +238,7 @@ class ItineraireController extends Controller
         }
 
         // Récupérer les résultats de la requête
-        $resultats = $itineraires->get();
+        $resultats = $itineraires->with('categorie:id,nom', 'user:id,name')->get();
 
         // Retourner les résultats au format JSON
         return response()->json([
@@ -260,7 +266,7 @@ class ItineraireController extends Controller
             // Vérifier si l'itinéraire est déjà dans la liste à visiter de l'utilisateur
             $alreadyAdded = ItineraireAVisiter::where('user_id', $user->id)
                 ->where('itineraire_id', $itineraireId)
-                ->exists();
+                ->delete();
 
             if ($alreadyAdded) {
                 return response()->json([
