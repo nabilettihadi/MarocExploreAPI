@@ -15,76 +15,76 @@ class ItineraireController extends Controller
 {
 
     public function create(Request $request)
-{
-    try {
-        $request->validate([
-            'titre' => 'required|string|max:255',
-            'categorie' => 'required|string|max:255',
-            'image' => 'required|string',
-            'duree' => 'required|string',
-            'destinations' => 'required|array|min:2',
-            'destinations.*.nom' => 'required|string|max:255',
-            'destinations.*.lieu_logement' => 'required|string|max:255',
-            'destinations.*.endroits_a_visiter' => 'required|array|min:1',
-            'destinations.*.endroits_a_visiter.*.nom_endroit' => 'required|string|max:255',
-        ]);
-
-        $user = Auth::user();
-
-        // Recherche ou création de la catégorie
-        $categorie = Categorie::firstOrCreate(['nom' => $request->categorie]);
-
-        $itineraire = new Itineraire([
-            'titre' => $request->titre,
-            'image' => $request->image,
-            'duree' => $request->duree,
-            'user_id' => $user->id,
-        ]);
-
-        // Association de la catégorie à l'itinéraire
-        $itineraire->categorie_id = $categorie->id;
-        $itineraire->save();
-
-        // Création des destinations
-        $destinations = [];
-        foreach ($request->destinations as $destinationData) {
-            $destination = new Destination([
-                'nom' => $destinationData['nom'],
-                'lieu_logement' => $destinationData['lieu_logement'],
-                'itineraire_id' => $itineraire->id,
+    {
+        try {
+            $request->validate([
+                'titre' => 'required|string|max:255',
+                'categorie' => 'required|string|max:255',
+                'image' => 'required|string',
+                'duree' => 'required|string',
+                'destinations' => 'required|array|min:2',
+                'destinations.*.nom' => 'required|string|max:255',
+                'destinations.*.lieu_logement' => 'required|string|max:255',
+                'destinations.*.endroits_a_visiter' => 'required|array|min:1',
+                'destinations.*.endroits_a_visiter.*.nom_endroit' => 'required|string|max:255',
             ]);
-            $destination->save();
 
-            // Création des endroits à visiter pour chaque destination
-            $endroits_a_visiter = [];
-            foreach ($destinationData['endroits_a_visiter'] as $endroitData) {
-                $endroit = new EndroitAVisiter([
-                    'nom_endroit' => $endroitData['nom_endroit'],
-                    'destination_id' => $destination->id,
+            $user = Auth::user();
+
+            // Recherche ou création de la catégorie
+            $categorie = Categorie::firstOrCreate(['nom' => $request->categorie]);
+
+            $itineraire = new Itineraire([
+                'titre' => $request->titre,
+                'image' => $request->image,
+                'duree' => $request->duree,
+                'user_id' => $user->id,
+            ]);
+
+            // Association de la catégorie à l'itinéraire
+            $itineraire->categorie_id = $categorie->id;
+            $itineraire->save();
+
+            // Création des destinations
+            $destinations = [];
+            foreach ($request->destinations as $destinationData) {
+                $destination = new Destination([
+                    'nom' => $destinationData['nom'],
+                    'lieu_logement' => $destinationData['lieu_logement'],
+                    'itineraire_id' => $itineraire->id,
                 ]);
-                $endroit->save();
-                $endroits_a_visiter[] = $endroit;
+                $destination->save();
+
+                // Création des endroits à visiter pour chaque destination
+                $endroits_a_visiter = [];
+                foreach ($destinationData['endroits_a_visiter'] as $endroitData) {
+                    $endroit = new EndroitAVisiter([
+                        'nom_endroit' => $endroitData['nom_endroit'],
+                        'destination_id' => $destination->id,
+                    ]);
+                    $endroit->save();
+                    $endroits_a_visiter[] = $endroit;
+                }
+
+                $destination['endroits_a_visiter'] = $endroits_a_visiter;
+                $destinations[] = $destination;
             }
 
-            $destination['endroits_a_visiter'] = $endroits_a_visiter;
-            $destinations[] = $destination;
+            $itineraire['destinations'] = $destinations;
+
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Itinéraire avec ses destinations créé avec succès',
+                'itineraire' => $itineraire,
+            ], 201);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'An error occurred',
+                'error' => $e->getMessage(),
+            ], 500);
         }
-
-        $itineraire['destinations'] = $destinations;
-
-        return response()->json([
-            'status' => 'success',
-            'message' => 'Itinéraire avec ses destinations créé avec succès',
-            'itineraire' => $itineraire,
-        ], 201);
-    } catch (\Exception $e) {
-        return response()->json([
-            'status' => 'error',
-            'message' => 'An error occurred',
-            'error' => $e->getMessage(),
-        ], 500);
     }
-}
 
 
 
@@ -138,31 +138,31 @@ class ItineraireController extends Controller
     {
         try {
             $itineraire = Itineraire::findOrFail($itineraireId);
-    
+
             if ($itineraire->user_id !== auth()->id()) {
                 return response()->json([
                     'status' => 'error',
                     'message' => 'Vous n\'êtes pas autorisé à modifier cet itinéraire.',
                 ], 403); // Code 403: Accès refusé
             }
-    
+
             $request->validate([
                 'titre' => 'required|string|max:255',
                 'categorie' => 'required|string|max:255',
                 'image' => 'required|string',
                 'duree' => 'required|string',
             ]);
-    
+
             // Recherche ou création de la catégorie
             $categorie = Categorie::firstOrCreate(['nom' => $request->categorie]);
-    
+
             $itineraire->titre = $request->titre;
             $itineraire->categorie_id = $categorie->id; // Utilisation de l'ID de la catégorie
             $itineraire->image = $request->image;
             $itineraire->duree = $request->duree;
-    
+
             $itineraire->save();
-    
+
             return response()->json([
                 'status' => 'success',
                 'message' => 'Itinéraire mis à jour avec succès',
@@ -176,7 +176,7 @@ class ItineraireController extends Controller
             ], 500);
         }
     }
-    
+
 
     public function index()
     {
@@ -222,7 +222,9 @@ class ItineraireController extends Controller
         $itineraires = Itineraire::query();
 
         if ($categorie) {
-            $itineraires->where('categorie', $categorie);
+            $itineraires->whereHas('categorie', function ($query) use ($categorie) {
+                $query->where('nom', $categorie);
+            });
         }
 
         if ($duree) {
@@ -239,7 +241,6 @@ class ItineraireController extends Controller
             'resultats' => $resultats,
         ]);
     }
-
 
 
     public function addToVisitList(Request $request, $itineraireId)
