@@ -25,7 +25,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\":\"Ettihadi\",\r\n    \"email\":\"Ettihadi@gmail.com\",\r\n    \"password\":\"Ettihadi@2002\"\r\n}",
+					"raw": "{\r\n    \"name\":\"Nabil\",\r\n    \"email\":\"Nabil@gmail.com\",\r\n    \"password\":\"Nabil@2002\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -171,7 +171,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"email\":\"Ettihadi@gmail.com\",\r\n    \"password\":\"Ettihadi@2002\"\r\n}",
+					"raw": "{\r\n    \"email\":\"Nabil@gmail.com\",\r\n    \"password\":\"Nabil@2002\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -203,6 +203,19 @@
 				"method": "POST",
 				"header": [
 					{
+						"name": "cookie",
+						"sortOrder": 1,
+						"infoTitle": "This header was automatically added",
+						"info": "The Cookie header is added to send the cookies that are associated with this endpoint.\n\nUse the cookie manager to remove the header or to change the value.",
+						"allowedToToggle": false,
+						"disableEdit": true,
+						"previewSettingsLink": "Go to cookies",
+						"key": "Cookie",
+						"value": "XSRF-TOKEN=eyJpdiI6InNhSm9UMnlSWEc2QWlqY0tRbVRJemc9PSIsInZhbHVlIjoiZVY5VFNDb28vZ3JvTXdWck9yVlRGYlVjcnhkOW5DaGFwc1JQRStXRHhja3pobS9NbnRzUmZ5SlVlbzAwSGJlRUVrR3lvRjhkMXBPdFhSdjJZS2Z1THh3ZTdEUDBwUEcvL1hZaitjeDZQTDJNdlZUS1BXa2xMeEdCOXFXeFpnRzkiLCJtYWMiOiIxZDBkYjc5Mzg4Njg1YTc0YjlhYzM2NGYwZWY3MGZkYTE2YzBlY2M4ZjEzMDMyYWZkYTk3ZjQ2YTIwMzQ0OWM5IiwidGFnIjoiIn0%3D; laravel_session=eyJpdiI6Imt6UnUrbkFrNXBPS213OU4rRXRGRVE9PSIsInZhbHVlIjoiTTNneTFEZ3E2ckFzbk5CcVFhaVpTRmZRTHRObHIwdEV3eXRhVUxMckZnczJvc0I0akptV0Fqd3pUWVBHdU82eEFQeUFxQmZKY1J6ajFuY3c1TEQrZnFIcG5DRkMvMEgzNS9qeEttVmlnTTlKbkxJRG1nQllScEdYMVVaOWllVlYiLCJtYWMiOiI4ZGYzZWQyYzc0MDFiNjUyNzZmZDEyZDlhMjg0Mjg2MTIyNDc5ZjVmYWJjODliZDNkYzRlMGQ4NjRiYTRjNzZjIiwidGFnIjoiIn0%3D",
+						"system": true,
+						"type": "text"
+					},
+					{
 						"name": "cache-control",
 						"sortOrder": 2,
 						"infoTitle": "We recommend using this header",
@@ -316,14 +329,14 @@
 					},
 					{
 						"key": "Authorization",
-						"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzExNzM5MzI5LCJleHAiOjE3MTE3NDI5MjksIm5iZiI6MTcxMTczOTMyOSwianRpIjoiUUxpa0szOTBlZ1Yxb21xVSIsInN1YiI6IjIyIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.o9TkrX6FsLi1ARm0m2bK_WLIyVMTU70c_ZkX2BgyX34",
+						"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzEyMjgxODQwLCJleHAiOjE3MTIyODU0NDAsIm5iZiI6MTcxMjI4MTg0MCwianRpIjoibEVyT04yWThrblozWnZ0ZSIsInN1YiI6IjE2IiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.jP63pAdFwUVG8Hy192QX2FePzR5lMmdJipb3ZiQ5GQw",
 						"type": "text",
 						"id": 0
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"titre\": \"Découverte du Maroc\",\r\n    \"categorie\": \"Culture et Aventure\",\r\n    \"duree\": \"10 jours\",\r\n    \"image\": \"lien_image.jpg\",\r\n    \"destinations\": [\r\n        {\r\n            \"nom\": \"Marrakech\",\r\n            \"lieu_logement\": \"Riad A\",\r\n            \"endroits_a_visiter\": [\r\n                { \"nom_endroit\": \"Place Jemaa el-Fna\" },\r\n                { \"nom_endroit\": \"Palais Bahia\" }\r\n            ]\r\n        },\r\n        {\r\n            \"nom\": \"Fès\",\r\n            \"lieu_logement\": \"Riad B\",\r\n            \"endroits_a_visiter\": [\r\n                { \"nom_endroit\": \"Médina de Fès\" },\r\n                { \"nom_endroit\": \"Université Al Quaraouiyine\" }\r\n            ]\r\n        },\r\n        {\r\n            \"nom\": \"Merzouga\",\r\n            \"lieu_logement\": \"Hôtel C\",\r\n            \"endroits_a_visiter\": [\r\n                { \"nom_endroit\": \"Dunes de l'erg Chebbi\" },\r\n                { \"nom_endroit\": \"Balade en dromadaire\" }\r\n            ]\r\n        }\r\n    ]\r\n}\r\n",
+					"raw": "{\r\n    \"titre\": \"Aventure au Pays du Soleil Levant\",\r\n    \"categorie\": \"Aventure et Nature\",\r\n    \"duree\": \"12 jours\",\r\n    \"image\": \"japon_aventure.jpg\",\r\n    \"destinations\": [\r\n        {\r\n            \"nom\": \"Nara\",\r\n            \"lieu_logement\": \"Auberge de Montagne F\",\r\n            \"endroits_a_visiter\": [\r\n                { \"nom_endroit\": \"Parc de Nara\" },\r\n                { \"nom_endroit\": \"Grand Bouddha de Todai-ji\" }\r\n            ]\r\n        },\r\n        {\r\n            \"nom\": \"Kanazawa\",\r\n            \"lieu_logement\": \"Hôtel G\",\r\n            \"endroits_a_visiter\": [\r\n                { \"nom_endroit\": \"Jardin Kenroku-en\" },\r\n                { \"nom_endroit\": \"Musée d'Art Contemporain\" }\r\n            ]\r\n        },\r\n        {\r\n            \"nom\": \"Hokkaido\",\r\n            \"lieu_logement\": \"Chalet de Montagne H\",\r\n            \"endroits_a_visiter\": [\r\n                { \"nom_endroit\": \"Parc National de Shikotsu-Toya\" },\r\n                { \"nom_endroit\": \"Village Shiraoi Ainu\" }\r\n            ]\r\n        }\r\n    ]\r\n}\r\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -331,7 +344,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/itineraires?Authorization=bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzExNjQwNzI0LCJleHAiOjE3MTE2NDQzMjQsIm5iZiI6MTcxMTY0MDcyNCwianRpIjoib3dodFVwSFF6WTBTWk5aNiIsInN1YiI6IjMiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.apBBeWTW6XGijIjbTlCO7I1VnuMe4h1-pYsoGwnibKw",
+					"raw": "http://127.0.0.1:8000/api/itineraires?Authorization=bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzEyMjgxODQwLCJleHAiOjE3MTIyODU0NDAsIm5iZiI6MTcxMjI4MTg0MCwianRpIjoibEVyT04yWThrblozWnZ0ZSIsInN1YiI6IjE2IiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.jP63pAdFwUVG8Hy192QX2FePzR5lMmdJipb3ZiQ5GQw",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -347,7 +360,7 @@
 					"query": [
 						{
 							"key": "Authorization",
-							"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzExNjQwNzI0LCJleHAiOjE3MTE2NDQzMjQsIm5iZiI6MTcxMTY0MDcyNCwianRpIjoib3dodFVwSFF6WTBTWk5aNiIsInN1YiI6IjMiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.apBBeWTW6XGijIjbTlCO7I1VnuMe4h1-pYsoGwnibKw"
+							"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzEyMjgxODQwLCJleHAiOjE3MTIyODU0NDAsIm5iZiI6MTcxMjI4MTg0MCwianRpIjoibEVyT04yWThrblozWnZ0ZSIsInN1YiI6IjE2IiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.jP63pAdFwUVG8Hy192QX2FePzR5lMmdJipb3ZiQ5GQw"
 						}
 					]
 				},
@@ -364,6 +377,19 @@
 				"method": "GET",
 				"header": [
 					{
+						"name": "cookie",
+						"sortOrder": 1,
+						"infoTitle": "This header was automatically added",
+						"info": "The Cookie header is added to send the cookies that are associated with this endpoint.\n\nUse the cookie manager to remove the header or to change the value.",
+						"allowedToToggle": false,
+						"disableEdit": true,
+						"previewSettingsLink": "Go to cookies",
+						"key": "Cookie",
+						"value": "XSRF-TOKEN=eyJpdiI6InNhSm9UMnlSWEc2QWlqY0tRbVRJemc9PSIsInZhbHVlIjoiZVY5VFNDb28vZ3JvTXdWck9yVlRGYlVjcnhkOW5DaGFwc1JQRStXRHhja3pobS9NbnRzUmZ5SlVlbzAwSGJlRUVrR3lvRjhkMXBPdFhSdjJZS2Z1THh3ZTdEUDBwUEcvL1hZaitjeDZQTDJNdlZUS1BXa2xMeEdCOXFXeFpnRzkiLCJtYWMiOiIxZDBkYjc5Mzg4Njg1YTc0YjlhYzM2NGYwZWY3MGZkYTE2YzBlY2M4ZjEzMDMyYWZkYTk3ZjQ2YTIwMzQ0OWM5IiwidGFnIjoiIn0%3D; laravel_session=eyJpdiI6Imt6UnUrbkFrNXBPS213OU4rRXRGRVE9PSIsInZhbHVlIjoiTTNneTFEZ3E2ckFzbk5CcVFhaVpTRmZRTHRObHIwdEV3eXRhVUxMckZnczJvc0I0akptV0Fqd3pUWVBHdU82eEFQeUFxQmZKY1J6ajFuY3c1TEQrZnFIcG5DRkMvMEgzNS9qeEttVmlnTTlKbkxJRG1nQllScEdYMVVaOWllVlYiLCJtYWMiOiI4ZGYzZWQyYzc0MDFiNjUyNzZmZDEyZDlhMjg0Mjg2MTIyNDc5ZjVmYWJjODliZDNkYzRlMGQ4NjRiYTRjNzZjIiwidGFnIjoiIn0%3D",
+						"system": true,
+						"type": "text"
+					},
+					{
 						"name": "cache-control",
 						"sortOrder": 2,
 						"infoTitle": "We recommend using this header",
@@ -477,14 +503,14 @@
 					},
 					{
 						"key": "Authorization",
-						"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzExNzM5MzI5LCJleHAiOjE3MTE3NDI5MjksIm5iZiI6MTcxMTczOTMyOSwianRpIjoiUUxpa0szOTBlZ1Yxb21xVSIsInN1YiI6IjIyIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.o9TkrX6FsLi1ARm0m2bK_WLIyVMTU70c_ZkX2BgyX34",
+						"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzEyMjgxODQwLCJleHAiOjE3MTIyODU0NDAsIm5iZiI6MTcxMjI4MTg0MCwianRpIjoibEVyT04yWThrblozWnZ0ZSIsInN1YiI6IjE2IiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.jP63pAdFwUVG8Hy192QX2FePzR5lMmdJipb3ZiQ5GQw",
 						"type": "text",
 						"id": 0
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"destinations\": [\r\n        {\r\n            \"nom\": \"Plage Paradisiaque\",\r\n            \"lieu_logement\": \"Hôtel Magnifique\"\r\n        },\r\n        {\r\n            \"nom\": \"Montagnes Enneigées\",\r\n            \"lieu_logement\": \"Chalet Cosy\"\r\n        }\r\n    ]\r\n}\r\n",
+					"raw": "{\r\n    \"destinations\": [\r\n        {\r\n            \"nom\": \"Croisière en Méditerranée\",\r\n            \"lieu_logement\": \"Cabine de croisière\"\r\n        },\r\n        {\r\n            \"nom\": \"Visite de Barcelone\",\r\n            \"lieu_logement\": \"Hôtel en centre-ville\"\r\n        },\r\n        {\r\n            \"nom\": \"Exploration de Rome\",\r\n            \"lieu_logement\": \"Appartement près du Colisée\"\r\n        },\r\n        {\r\n            \"nom\": \"Découverte de Santorin\",\r\n            \"lieu_logement\": \"Villa avec vue sur la mer\"\r\n        }\r\n    ]\r\n}\r\n\r\n\r\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -492,7 +518,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/itineraires/18/addDestination",
+					"raw": "http://127.0.0.1:8000/api/itineraires/13/addDestination",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -504,7 +530,7 @@
 					"path": [
 						"api",
 						"itineraires",
-						"18",
+						"13",
 						"addDestination"
 					]
 				},
@@ -518,6 +544,19 @@
 				"method": "PUT",
 				"header": [
 					{
+						"name": "cookie",
+						"sortOrder": 1,
+						"infoTitle": "This header was automatically added",
+						"info": "The Cookie header is added to send the cookies that are associated with this endpoint.\n\nUse the cookie manager to remove the header or to change the value.",
+						"allowedToToggle": false,
+						"disableEdit": true,
+						"previewSettingsLink": "Go to cookies",
+						"key": "Cookie",
+						"value": "XSRF-TOKEN=eyJpdiI6InNhSm9UMnlSWEc2QWlqY0tRbVRJemc9PSIsInZhbHVlIjoiZVY5VFNDb28vZ3JvTXdWck9yVlRGYlVjcnhkOW5DaGFwc1JQRStXRHhja3pobS9NbnRzUmZ5SlVlbzAwSGJlRUVrR3lvRjhkMXBPdFhSdjJZS2Z1THh3ZTdEUDBwUEcvL1hZaitjeDZQTDJNdlZUS1BXa2xMeEdCOXFXeFpnRzkiLCJtYWMiOiIxZDBkYjc5Mzg4Njg1YTc0YjlhYzM2NGYwZWY3MGZkYTE2YzBlY2M4ZjEzMDMyYWZkYTk3ZjQ2YTIwMzQ0OWM5IiwidGFnIjoiIn0%3D; laravel_session=eyJpdiI6Imt6UnUrbkFrNXBPS213OU4rRXRGRVE9PSIsInZhbHVlIjoiTTNneTFEZ3E2ckFzbk5CcVFhaVpTRmZRTHRObHIwdEV3eXRhVUxMckZnczJvc0I0akptV0Fqd3pUWVBHdU82eEFQeUFxQmZKY1J6ajFuY3c1TEQrZnFIcG5DRkMvMEgzNS9qeEttVmlnTTlKbkxJRG1nQllScEdYMVVaOWllVlYiLCJtYWMiOiI4ZGYzZWQyYzc0MDFiNjUyNzZmZDEyZDlhMjg0Mjg2MTIyNDc5ZjVmYWJjODliZDNkYzRlMGQ4NjRiYTRjNzZjIiwidGFnIjoiIn0%3D",
+						"system": true,
+						"type": "text"
+					},
+					{
 						"name": "cache-control",
 						"sortOrder": 2,
 						"infoTitle": "We recommend using this header",
@@ -631,14 +670,14 @@
 					},
 					{
 						"key": "Authorization",
-						"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzExNzM5MzI5LCJleHAiOjE3MTE3NDI5MjksIm5iZiI6MTcxMTczOTMyOSwianRpIjoiUUxpa0szOTBlZ1Yxb21xVSIsInN1YiI6IjIyIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.o9TkrX6FsLi1ARm0m2bK_WLIyVMTU70c_ZkX2BgyX34",
+						"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzEyMjgxODQwLCJleHAiOjE3MTIyODU0NDAsIm5iZiI6MTcxMjI4MTg0MCwianRpIjoibEVyT04yWThrblozWnZ0ZSIsInN1YiI6IjE2IiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.jP63pAdFwUVG8Hy192QX2FePzR5lMmdJipb3ZiQ5GQw",
 						"type": "text",
 						"id": 0
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"titre\": \"Découverte du Maroc\",\r\n    \"categorie\": \"Culture et Aventure\",\r\n    \"image\": \"nouveau_lien_image.jpg\",\r\n    \"duree\": \"14 jours\"\r\n}",
+					"raw": "{\r\n    \"titre\": \"Exploration de la Jungle Amazonienne\",\r\n    \"categorie\": \"Nature et Aventure\",\r\n    \"image\": \"jungle_perou.jpg\",\r\n    \"duree\": \"10\"\r\n}\r\n\r\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -646,7 +685,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/itineraires/18?Authorization=bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzExNjQwNTY0LCJleHAiOjE3MTE2NDQxNjQsIm5iZiI6MTcxMTY0MDU2NCwianRpIjoiYWhqQWFuZ0tyRGxFYURTSCIsInN1YiI6IjMiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.CiADFR9CuAR-4qEZaOZbx2mpmNorM2Ou8mc1fJAy7_c",
+					"raw": "http://127.0.0.1:8000/api/itineraires/13",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -658,13 +697,7 @@
 					"path": [
 						"api",
 						"itineraires",
-						"18"
-					],
-					"query": [
-						{
-							"key": "Authorization",
-							"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzExNjQwNTY0LCJleHAiOjE3MTE2NDQxNjQsIm5iZiI6MTcxMTY0MDU2NCwianRpIjoiYWhqQWFuZ0tyRGxFYURTSCIsInN1YiI6IjMiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.CiADFR9CuAR-4qEZaOZbx2mpmNorM2Ou8mc1fJAy7_c"
-						}
+						"13"
 					]
 				},
 				"description": "Permet à un utilisateur authentifié de modifier les détails d'un itinéraire existant, y compris le titre, la catégorie, la durée et l'image."
@@ -718,7 +751,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"titre\": \"Vacances à la plage\"\r\n}\r\n",
+					"raw": "{\r\n    \"titre\": \"Aventure au Pérou\"\r\n}\r\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -755,7 +788,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"categorie\": \"Famille\"\r\n}",
+					"raw": "{\r\n    \"categorie\": \"Nature et Aventure\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -788,6 +821,19 @@
 				"method": "POST",
 				"header": [
 					{
+						"name": "cookie",
+						"sortOrder": 1,
+						"infoTitle": "This header was automatically added",
+						"info": "The Cookie header is added to send the cookies that are associated with this endpoint.\n\nUse the cookie manager to remove the header or to change the value.",
+						"allowedToToggle": false,
+						"disableEdit": true,
+						"previewSettingsLink": "Go to cookies",
+						"key": "Cookie",
+						"value": "XSRF-TOKEN=eyJpdiI6InNhSm9UMnlSWEc2QWlqY0tRbVRJemc9PSIsInZhbHVlIjoiZVY5VFNDb28vZ3JvTXdWck9yVlRGYlVjcnhkOW5DaGFwc1JQRStXRHhja3pobS9NbnRzUmZ5SlVlbzAwSGJlRUVrR3lvRjhkMXBPdFhSdjJZS2Z1THh3ZTdEUDBwUEcvL1hZaitjeDZQTDJNdlZUS1BXa2xMeEdCOXFXeFpnRzkiLCJtYWMiOiIxZDBkYjc5Mzg4Njg1YTc0YjlhYzM2NGYwZWY3MGZkYTE2YzBlY2M4ZjEzMDMyYWZkYTk3ZjQ2YTIwMzQ0OWM5IiwidGFnIjoiIn0%3D; laravel_session=eyJpdiI6Imt6UnUrbkFrNXBPS213OU4rRXRGRVE9PSIsInZhbHVlIjoiTTNneTFEZ3E2ckFzbk5CcVFhaVpTRmZRTHRObHIwdEV3eXRhVUxMckZnczJvc0I0akptV0Fqd3pUWVBHdU82eEFQeUFxQmZKY1J6ajFuY3c1TEQrZnFIcG5DRkMvMEgzNS9qeEttVmlnTTlKbkxJRG1nQllScEdYMVVaOWllVlYiLCJtYWMiOiI4ZGYzZWQyYzc0MDFiNjUyNzZmZDEyZDlhMjg0Mjg2MTIyNDc5ZjVmYWJjODliZDNkYzRlMGQ4NjRiYTRjNzZjIiwidGFnIjoiIn0%3D",
+						"system": true,
+						"type": "text"
+					},
+					{
 						"name": "cache-control",
 						"sortOrder": 2,
 						"infoTitle": "We recommend using this header",
@@ -888,7 +934,7 @@
 					},
 					{
 						"key": "Authorization",
-						"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzExNzM5MzI5LCJleHAiOjE3MTE3NDI5MjksIm5iZiI6MTcxMTczOTMyOSwianRpIjoiUUxpa0szOTBlZ1Yxb21xVSIsInN1YiI6IjIyIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.o9TkrX6FsLi1ARm0m2bK_WLIyVMTU70c_ZkX2BgyX34",
+						"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzEyMjgxODQwLCJleHAiOjE3MTIyODU0NDAsIm5iZiI6MTcxMjI4MTg0MCwianRpIjoibEVyT04yWThrblozWnZ0ZSIsInN1YiI6IjE2IiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.jP63pAdFwUVG8Hy192QX2FePzR5lMmdJipb3ZiQ5GQw",
 						"type": "text",
 						"id": 0
 					}
@@ -903,7 +949,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/itineraires/16/addToVisitList",
+					"raw": "http://127.0.0.1:8000/api/itineraires/13/addToVisitList",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -915,7 +961,7 @@
 					"path": [
 						"api",
 						"itineraires",
-						"16",
+						"13",
 						"addToVisitList"
 					]
 				},
@@ -928,6 +974,19 @@
 			"request": {
 				"method": "POST",
 				"header": [
+					{
+						"name": "cookie",
+						"sortOrder": 1,
+						"infoTitle": "This header was automatically added",
+						"info": "The Cookie header is added to send the cookies that are associated with this endpoint.\n\nUse the cookie manager to remove the header or to change the value.",
+						"allowedToToggle": false,
+						"disableEdit": true,
+						"previewSettingsLink": "Go to cookies",
+						"key": "Cookie",
+						"value": "XSRF-TOKEN=eyJpdiI6InNhSm9UMnlSWEc2QWlqY0tRbVRJemc9PSIsInZhbHVlIjoiZVY5VFNDb28vZ3JvTXdWck9yVlRGYlVjcnhkOW5DaGFwc1JQRStXRHhja3pobS9NbnRzUmZ5SlVlbzAwSGJlRUVrR3lvRjhkMXBPdFhSdjJZS2Z1THh3ZTdEUDBwUEcvL1hZaitjeDZQTDJNdlZUS1BXa2xMeEdCOXFXeFpnRzkiLCJtYWMiOiIxZDBkYjc5Mzg4Njg1YTc0YjlhYzM2NGYwZWY3MGZkYTE2YzBlY2M4ZjEzMDMyYWZkYTk3ZjQ2YTIwMzQ0OWM5IiwidGFnIjoiIn0%3D; laravel_session=eyJpdiI6Imt6UnUrbkFrNXBPS213OU4rRXRGRVE9PSIsInZhbHVlIjoiTTNneTFEZ3E2ckFzbk5CcVFhaVpTRmZRTHRObHIwdEV3eXRhVUxMckZnczJvc0I0akptV0Fqd3pUWVBHdU82eEFQeUFxQmZKY1J6ajFuY3c1TEQrZnFIcG5DRkMvMEgzNS9qeEttVmlnTTlKbkxJRG1nQllScEdYMVVaOWllVlYiLCJtYWMiOiI4ZGYzZWQyYzc0MDFiNjUyNzZmZDEyZDlhMjg0Mjg2MTIyNDc5ZjVmYWJjODliZDNkYzRlMGQ4NjRiYTRjNzZjIiwidGFnIjoiIn0%3D",
+						"system": true,
+						"type": "text"
+					},
 					{
 						"name": "cache-control",
 						"sortOrder": 2,
@@ -1029,13 +1088,13 @@
 					},
 					{
 						"key": "Authorization",
-						"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzExNzM5MzI5LCJleHAiOjE3MTE3NDI5MjksIm5iZiI6MTcxMTczOTMyOSwianRpIjoiUUxpa0szOTBlZ1Yxb21xVSIsInN1YiI6IjIyIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.o9TkrX6FsLi1ARm0m2bK_WLIyVMTU70c_ZkX2BgyX34",
+						"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzEyMjgxODQwLCJleHAiOjE3MTIyODU0NDAsIm5iZiI6MTcxMjI4MTg0MCwianRpIjoibEVyT04yWThrblozWnZ0ZSIsInN1YiI6IjE2IiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.jP63pAdFwUVG8Hy192QX2FePzR5lMmdJipb3ZiQ5GQw",
 						"type": "text",
 						"id": 0
 					}
 				],
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/logout?=bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzExNjM5MjAyLCJleHAiOjE3MTE2NDI4MDIsIm5iZiI6MTcxMTYzOTIwMiwianRpIjoibzhaSUdsc245dVlLUHFHRyIsInN1YiI6IjMiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.urDcMt1aTVEG__8Qb98bmiiTSMEEdgtAUpRTRO8DCpI",
+					"raw": "http://127.0.0.1:8000/api/logout",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -1047,12 +1106,6 @@
 					"path": [
 						"api",
 						"logout"
-					],
-					"query": [
-						{
-							"key": "",
-							"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzExNjM5MjAyLCJleHAiOjE3MTE2NDI4MDIsIm5iZiI6MTcxMTYzOTIwMiwianRpIjoibzhaSUdsc245dVlLUHFHRyIsInN1YiI6IjMiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.urDcMt1aTVEG__8Qb98bmiiTSMEEdgtAUpRTRO8DCpI"
-						}
 					]
 				},
 				"description": "Permet à un utilisateur authentifié de se déconnecter de l'application et de terminer sa session en cours."
